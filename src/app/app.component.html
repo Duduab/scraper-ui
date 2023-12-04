@@ -1,0 +1,67 @@
+<div class="input-container">
+  <div class="container d-flex">
+    <div class="row">
+      <h2>Amazon products Catalog</h2>
+      <div class="col-12">
+        <input #newProductName placeholder="Enter Product name">
+      </div>
+      <br>
+      <div class="col-6">
+          <textarea
+            #newProductDescription
+            placeholder="Enter Description" 
+            class="txtarea"
+            rows="5"
+            cols="30"
+            name="Text"
+            id="text"
+          ></textarea>
+      </div>
+      <br>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <input #newProductPrice placeholder="Enter Product price">
+      </div>
+      <br>
+      <div class="col-6">
+        <input #newProductImageUrl placeholder="Enter Product name">     
+      </div>
+      <br>
+    </div>
+    <div class="row">
+      <button (click)="addProducts(newProductName.value, newProductDescription.value, newProductImageUrl.value, newProductPrice.value)">Add Product</button>
+    </div>
+    <br>
+    <div class="row">
+      <button (click)="onRefreshRate()">refreshRate</button>
+      <button (click)="onCreateMessage()">createMessage</button>
+      <button (click)="onSubmitDescription()">submitDescription</button>
+      <button (click)="onRunScan()">runScan</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-grid">
+  <div *ngFor="let product of products" class="product-card">
+    <b>{{product.name}}</b>
+    <br>
+    <img src="{{product.imageUrl}}" alt="product-image">
+    <br>
+    <textarea
+      #newProductDescription
+      value="{{product.description}}"
+      formControlName="textArea"
+      placeholder="Enter Description" 
+      class="txtarea"
+      rows="10"
+      cols="64"
+      name="Text"
+      id="text"
+    ></textarea>
+    <br>
+    <b>{{product.price}} $</b>
+    <button style="background-color: green;">Approve </button>
+    <button (click)="deleteProducts(product.id)">Delete Product</button>
+  </div>
+</div>
